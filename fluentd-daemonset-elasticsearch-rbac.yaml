@@ -75,20 +75,14 @@ spec:
             value: "9200"
           - name: FLUENT_ELASTICSEARCH_SCHEME
             value: "http"
-          # Option to configure elasticsearch plugin with self signed certs
-          # ================================================================
           - name: FLUENT_ELASTICSEARCH_SSL_VERIFY
             value: "true"
-          # Option to configure elasticsearch plugin with tls
-          # ================================================================
           - name: FLUENT_ELASTICSEARCH_SSL_VERSION
             value: "TLSv1_2"
-          # X-Pack Authentication
-          # =====================
           - name: FLUENT_ELASTICSEARCH_USER
-            value: "elastic"
+            value: "abf54990f0a286dc5d76"
           - name: FLUENT_ELASTICSEARCH_PASSWORD
-            value: "changeme"
+            value: "obfuscated"
         resources:
           limits:
             memory: 200Mi
@@ -98,11 +92,6 @@ spec:
         volumeMounts:
         - name: varlog
           mountPath: /var/log
-        # When actual pod logs in /var/lib/docker/containers, the following lines should be used.
-        # - name: dockercontainerlogdirectory
-        #   mountPath: /var/lib/docker/containers
-        #   readOnly: true
-        # When actual pod logs in /var/log/pods, the following lines should be used.
         - name: dockercontainerlogdirectory
           mountPath: /var/log/pods
           readOnly: true
@@ -111,11 +100,6 @@ spec:
       - name: varlog
         hostPath:
           path: /var/log
-      # When actual pod logs in /var/lib/docker/containers, the following lines should be used.
-      # - name: dockercontainerlogdirectory
-      #   hostPath:
-      #     path: /var/lib/docker/containers
-      # When actual pod logs in /var/log/pods, the following lines should be used.
       - name: dockercontainerlogdirectory
         hostPath:
           path: /var/log/pods
